@@ -1,7 +1,9 @@
 /*
-Memorizing all the positions that each string appears. Put it into a array and store <String, List<Integer>> as a pair in the hash map. When we need to find the shortest path of two string, just get the two list of these two string. Use two pointers and scan the two lists at the same time. When any pointer reach the end. Stop the loop. When we found out that the first position is greater than the second one. We add one to the second pointer. Else, add to the first pointer. This idea is like always keep minimum difference between the two position and move the two pointers.
-
-
+Memorizing all the positions that each string appears. Put it into a array and store <String, List<Integer>> as a pair in the hash map. 
+When we need to find the shortest path of two string, just get the two list of these two string. 
+Use two pointers and scan the two lists at the same time. When any pointer reach the end. Stop the loop. 
+When we found out that the first position is greater than the second one. We add one to the second pointer. 
+Else, add to the first pointer. This idea is like always keep minimum difference between the two position and move the two pointers.
 */
 
 public class WordDistance {
