@@ -19,4 +19,26 @@ public class Solution {
         }
         return r;
     }
+
+    //HashSet solution
+    public int[] singleNumberHashSet(int[] nums) {
+        int[] res = new int[2];
+        if (nums.length == 0 || nums == null)
+            return res;
+        Set<Integer> hs = new HashSet<>();
+        for (int n : nums){
+            if (hs.contains(n)){
+                hs.remove(n);
+            }else{
+                hs.add(n);
+            }
+        }
+        int i = 0;
+        for (int n : hs){
+            res[i] = n;
+            i++;
+        }
+        return res;
+    }
+
 }
