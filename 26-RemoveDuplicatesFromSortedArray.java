@@ -15,4 +15,18 @@ public class Solution {
         }
         return slow;
     }
+    //Second solution
+    public int removeDuplicates2(int[] nums) {
+        if (nums == null || nums.length == 0){
+            return 0;
+        }
+        int p = 1, len = nums.length;
+        for (int i = 1; i < len; i++){
+            if (nums[i] != nums[i-1]){
+                nums[p] = nums[i];
+                p++;
+            }
+        }
+        return p;
+    }
 }
