@@ -14,4 +14,25 @@ public class Solution {
         }
         return res;
     }
+
+    //slow answer:
+    public double myPowSlow(double x, int n) {
+        if (x == 0)
+            return 0;
+        if (n == 0)
+            return 1;
+        int sign = 1;
+        if (n < 0){
+            sign = -1;
+            n = -n;
+        }
+        double res = x;
+        
+        while (n > 1){
+            res = res * x;
+            n--;
+        }
+
+        return sign > 0 ? res : 1/res;
+    }
 }

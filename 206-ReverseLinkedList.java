@@ -8,6 +8,21 @@
  */
  //recursive solution
 public class Solution {
+    //Iterative!!!!
+    public ListNode reverseListIter(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+        ListNode curr = head, prev = null, next = null;
+        while (curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+        return prev;
+    }
+    //recursive
     public ListNode reverseList(ListNode head) {
         if(head == null || head.next == null)
             return head;
