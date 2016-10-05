@@ -8,16 +8,47 @@
  */
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        ListNode list = head;
-        while(list != null){
-            if(list.next == null){
-                break;
-            }else if (list.val == list.next.val){
-                list.next = list.next.next;
+        if(head == null || head.next == null)
+            return head;
+        ListNode curr = head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        while (curr != null && curr.next != null){
+            if (curr.val == curr.next.val){
+                curr.next = curr.next.next;
             }else{
-                list = list.next;
+                curr = curr.next;
             }
         }
-        return head;
+        return dummy.next;
+    }
+    //iterative solution
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null){
+            return l2;
+        }
+        if (l2 == null){
+            return l1;
+        }
+        
+        ListNode curr = new ListNode(0);
+        ListNode dummy = curr; 
+        while (l1 != null && l2 != null){
+            if (l1.val <= l2.val){
+                curr.next = l1;
+                l1 = l1.next;
+            }else{
+                curr.next = l2;
+                l2 = l2.next;
+            }
+            curr = curr.next;
+        }
+        if (l1 != null){
+            curr.next = l1;
+        }
+        if (l2 != null){
+            curr.next = l2;
+        }
+        return dummy.next;
     }
 }
