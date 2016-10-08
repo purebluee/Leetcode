@@ -10,6 +10,25 @@
  * }
  */
 public class Solution {
+    //hash map
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null)
+            return false;
+        if (head.next == head)
+            return true;
+        Set<ListNode> hs = new HashSet<>();
+        ListNode curr = head;
+        while (curr.next != null){
+            if (hs.contains(curr)){
+                return true;
+            }else{
+                hs.add(curr);
+            }
+            curr = curr.next;
+        }
+        return false;
+    }
+    //slow and fast pointers
     public boolean hasCycle(ListNode head) {
         if (head == null || head.next == null)
             return false;
