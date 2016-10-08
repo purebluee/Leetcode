@@ -17,6 +17,55 @@ So when another slow2 pointer run from head to 'q', at the same time, previous s
 e.g., 1->2->3->4->5->6->7->8->9->10-> the cycle begin 3
  */
 public class Solution {
+    //Hash map
+    public ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null){
+            return null;
+        }
+        if (head.next == head){
+            return head;
+        }
+        Set<ListNode> set = new HashSet<>();
+        ListNode curr = head;
+        while (curr.next != null){
+            if (set.contains(curr)){
+                return curr;
+            }else{
+                set.add(curr);
+            }
+            curr = curr.next;
+        }
+        return null;
+    }
+    //my two pointer sol
+    public ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null){
+            return null;
+        }
+        if (head.next == head){
+            return head;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (fast == slow)
+                break;
+            if (fast == null || fast.next == null){
+                return null;
+            }
+        }
+        slow = head;
+        while (fast != slow){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return fast;
+    }
+
+
+    //two pointers
     public ListNode detectCycle(ListNode head) {
         ListNode fast = head, slow = head;
         while (fast != null && fast.next != null){
