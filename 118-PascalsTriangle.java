@@ -3,7 +3,7 @@ public class Solution {
         List<List<Integer>> res = new ArrayList<>();
         for (int i = 0; i < numRows; i++){
             List<Integer> insideArr = new ArrayList<>();
-            for (int j = 0; j < i+1; j++){
+            for (int j = 0; j < i+1; j++){//attention!
                 if (j == 0 || j == i){
                     insideArr.add(1);
                 }else{
