@@ -10,6 +10,42 @@
  * }
  */
 public class Solution {
+    //regular constant space, O(n) time
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null)
+            return null;
+        int lenA = 0, lenB = 0;
+        ListNode currA = new ListNode(0), currB = new ListNode(0);
+        currA.next = headA;
+        currB.next = headB;
+        while (currA.next != null){
+            currA = currA.next;
+            lenA++;
+        }
+        while (currB.next != null){
+            currB = currB.next;
+            lenB++;
+        }
+        while (lenA > lenB){
+            headA = headA.next;
+            lenA--;
+        }
+        while (lenA < lenB){
+            headB = headB.next;
+            lenB--;
+        }
+        while (headA != null && headB != null && headA != headB){
+            headA = headA.next;
+            headB = headB.next;
+        }
+        if (headA != null){
+            return headA;
+        }else{
+            return null;
+        }
+    }
+
+    //Trick: without len
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode p1 = headA;
         ListNode p2 = headB;

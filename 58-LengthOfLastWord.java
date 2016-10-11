@@ -3,7 +3,7 @@ public class Solution {
     public int lengthOfLastWord(String s) {
         //if (s.length() == 0)    return 0;
         char[] arr = s.toCharArray();
-        //int index = arr.length - 1;
+        int index = arr.length - 1;
         int count = 0;
         while (index > 0 && arr[index] == ' '){
             index--;
