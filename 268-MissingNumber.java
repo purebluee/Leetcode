@@ -1,6 +1,17 @@
-//XOR
+
 public class Solution {
-    public int missingNumber(int[] nums) {
+    //SUM
+    public int missingNumberSUM(int[] nums) {
+        int len = nums.length;
+        int sum = (0 + len) * (len + 1) / 2;
+        for (int i = 0; i < len; i++){
+            sum -= nums[i];
+        }
+        return sum;
+   }
+
+    //XOR
+    public int missingNumberXOR(int[] nums) {
         int res = nums.length;
         for (int i = 0; i < nums.length; i++){
             res ^= nums[i];
@@ -8,10 +19,9 @@ public class Solution {
         }
         return res;
     }
-}
 
-public class Solution {
-    public int missingNumber(int[] nums) {
+    //Binary search
+    public int missingNumberBin(int[] nums) {
         Arrays.sort(nums);
         int start = 0;
         int end = nums.length;
