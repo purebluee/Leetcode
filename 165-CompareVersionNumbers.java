@@ -1,4 +1,27 @@
 public class Solution {
+    //my solution
+    public int compareVersion(String version1, String version2) {
+        String[] v1 = version1.split("\\.");
+        String[] v2 = version2.split("\\.");
+        for (int i = 0; i < Math.min(v1.length, v2.length); i++){
+            int intv1 = Integer.parseInt(v1[i]);
+            int intv2 = Integer.parseInt(v2[i]);
+            System.out.println(intv1 + " " + intv2);
+            if (intv1 > intv2){
+                return 1;
+            }else if (intv1 < intv2){
+                return -1;
+            }
+        }
+        if (v1.length > v2.length && Integer.parseInt(v1[v1.length-1]) != 0){
+            return 1;
+        }else if (v1.length < v2.length && Integer.parseInt(v2[v2.length-1]) != 0){
+            return -1;
+        }else{
+            return 0;
+        }
+    }
+
     public int compareVersion(String version1, String version2) {
         String[] v1 = version1.split("\\.");
         String[] v2 = version2.split("\\.");
