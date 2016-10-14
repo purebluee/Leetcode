@@ -8,6 +8,28 @@
  * }
  */
 public class Solution {
+    //Recursive
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        helper(res, root);
+        return res;
+    }
+    
+    private List<Integer> helper(List<Integer> res, TreeNode root){
+        if (root == null){
+            return res;
+        }
+        res.add(root.val);
+        if (root.left != null){
+            helper(res, root.left);
+        }
+        if (root.right != null){
+            helper(res, root.right);
+        }
+        return res;
+    }
+
+    //Iterative
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> l = new ArrayList<>();
         if (root == null)   return l;
