@@ -8,6 +8,26 @@
  * }
  */
 public class Solution {
+    //Recursive
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
+        helper(root,res);
+        return res;
+    }
+    private List<Integer> helper(TreeNode root, List<Integer> res){
+        if (root == null){
+            return res;
+        }
+        if (root.left != null){
+            helper(root.left, res);
+        }
+        res.add(root.val);
+        if (root.right != null){
+            helper(root.right, res);
+        }
+        return res;
+    }
+    //Iterative
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> l = new ArrayList<>();
         if (root == null)   return l;
