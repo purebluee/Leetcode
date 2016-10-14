@@ -41,7 +41,7 @@ public class Solution {
         while (!queue.isEmpty()){
             List<Integer> level = new ArrayList<>();
             int size = queue.size();
-            for (int i = 0; i < queue.size(); i++){
+            for (int i = 0; i < size; i++){
                 TreeNode head = queue.poll();
                 level.add(head.val);
                 if (head.left != null){
