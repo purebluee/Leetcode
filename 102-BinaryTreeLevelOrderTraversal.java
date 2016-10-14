@@ -27,4 +27,32 @@ public class Solution {
         addNode(result, node.left, level+1);
         addNode(result, node.right, level+1);
     }
+
+
+    //Iterative
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null){
+            return res;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        
+        while (!queue.isEmpty()){
+            List<Integer> level = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < queue.size(); i++){
+                TreeNode head = queue.poll();
+                level.add(head.val);
+                if (head.left != null){
+                    queue.offer(head.left);
+                }
+                if (head.right != null){
+                    queue.offer(head.right);
+                }
+            }
+            res.add(level);
+        }
+        return res;
+    }    
 }
