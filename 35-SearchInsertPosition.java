@@ -1,3 +1,4 @@
+// version 1: find the first position >= target
 public class Solution {
     public int searchInsert(int[] nums, int target) {
         if (nums == null || nums.length == 0){
