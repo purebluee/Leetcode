@@ -5,7 +5,7 @@ public class Solution {
         int top = 0, left = 0, right = n - 1, bottom = n - 1;
         int curr = 1;
         
-        while (left <= right){
+        while (left <= right && top <= bottom){
             for (int i = left; i <= right; i++){
                 matrix[top][i] = curr;
                 curr++;
