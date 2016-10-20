@@ -1,22 +1,15 @@
-/*
-Treat as a sorted 1D array
-*/
 public class Solution {
-    public boolean searchMatrix(int[][] matrix, int target) {
-        if (matrix == null || matrix.length == 0)   return false;
-        int rows = matrix.length, cols = matrix[0].length;
-        int start = 0, end = rows * cols - 1;
-        
-        while ( start <= end){
-            int mid = start + (end - start) / 2;
-            if (target == matrix[mid/cols][mid%cols]){
-                return true;
-            }else if (target > matrix[mid/cols][mid%cols]){
-                start = mid + 1;
-            }else{
-                end = mid - 1;
-            }
+    public int findPeakElement(int[] nums) {
+        if (nums.length == 1)   return 0;
+        int start = 0, end = nums.length - 1;
+        while (start < end){
+            int mid1 = start + (end - start) / 2;
+            int mid2 = mid1 + 1;
+            if (nums[mid2] > nums[mid1])
+                start = mid2;
+            else if (nums[mid2] < nums[mid1])
+                end = mid1;
         }
-        return false;
+        return nums[left] > nums[right] ? left : right;
     }
 }
