@@ -3,65 +3,76 @@
 
 Combination Sum I
 
-public List<List<Integer>> combinationSum(int[] candidates, int target) {
-    List<List<Integer>> list = new ArrayList<>();
-    Arrays.sort(candidates);
-    backtrack(list, new ArrayList<Integer>(), candidates, target, 0);
-    return list;
-}
-
-private void backtrack(List<List<Integer>> list, List<Integer> tempList, int[] cand, int remain, int start) {
-    if (remain < 0) return; // no solution
-    else if (remain == 0) list.add(new ArrayList<>(tempList));
-    else{
-        for (int i = start; i < cand.length; i++) { 
-            tempList.add(cand[i]);
-            backtrack(list, tempList, cand, remain-cand[i], i);
-            tempList.remove(tempList.size()-1);
-        } 
+public class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> curr = new ArrayList<>();
+        helper(candidates, target, 0, curr, res);
+        return res;
     }
-
+    
+    public void helper(int[] cand, int target, int start, List<Integer> curr, List<List<Integer>> res){
+        if (target > 0){
+            for (int i = start; i < cand.length; i++){
+                curr.add(cand[i]);
+                helper(cand, target - cand[i], i, curr, res);
+                curr.remove(curr.size() - 1);
+            }
+        }
+        if (target == 0){
+            res.add(new ArrayList<>(curr));
+        }
+    }
 }
 
 Combination Sum II
 
-public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-   List<List<Integer>> list = new LinkedList<List<Integer>>();
-   Arrays.sort(candidates);
-   backtrack(list, new ArrayList<Integer>(), candidates, target, 0);
-   return list;
-}
-
-private void backtrack(List<List<Integer>> list, List<Integer> tempList, int[] cand, int remain, int start) {
-   
-   if(remain < 0) return; // no solution 
-   else if(remain == 0) list.add(new ArrayList<>(tempList));
-   else{
-      for (int i = start; i < cand.length; i++) {
-         if(i > start && cand[i] == cand[i-1]) continue; // skip duplicates
-         tempList.add(cand[i]);
-         backtrack(list, tempList, cand, remain - cand[i], i+1);
-         tempList.remove(tempList.size() - 1);
-      }
-   }
+public class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> curr = new ArrayList<>();
+        Arrays.sort(candidates);
+        helper(candidates, target, 0, res, curr);
+        return res;
+    }
+    
+    private void helper(int[] cand, int target, int start, List<List<Integer>> res, List<Integer> curr){
+        if (target > 0){
+            for (int i = start; i < cand.length; i++){
+                if (i > start && cand[i] == cand[i-1]){
+                    continue;
+                }
+                curr.add(cand[i]);
+                helper(cand, target - cand[i], i + 1, res, curr);
+                curr.remove(curr.size()-1);
+            }
+        }
+        else if (target == 0){
+            res.add(new ArrayList<Integer>(curr));
+        }
+    }
 }
 
 Combination Sum III
 
-public List<List<Integer>> combinationSum3(int k, int n) {
-    List<List<Integer>> list = new ArrayList<>();
-    backtrack(list, new ArrayList<Integer>(), k, n, 1);
-    return list;
-}
-
-private void backtrack(List<List<Integer>> list, List<Integer> tempList, int k, int remain, int start) {
-    if(tempList.size() > k) return; // no solution 
-    else if(tempList.size() == k && remain == 0) list.add(new ArrayList<>(tempList));
-    else{
-        for (int i = start; i <= 9; i++) {
-            tempList.add(i);
-            backtrack(list, tempList, k, remain-i, i+1);
-            tempList.remove(tempList.size() - 1);
+public class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> curr = new ArrayList<>();
+        helper(k, n, res, curr, 1);
+        return res;
+    }
+    
+    private void helper(int k, int target, List<List<Integer>> res, List<Integer> curr, int start){
+        if (target == 0 && curr.size() == k){
+            res.add(new ArrayList<>(curr));
+        }
+        if (curr.size() < k){
+            for (int i = start; i <= 9; i++){
+                curr.add(i);
+                helper(k, target - i, res, curr, i+1);//to avoid repeated numbers
+                curr.remove(curr.size() - 1);
+            }
         }
     }
 }
@@ -72,22 +83,25 @@ private void backtrack(List<List<Integer>> list, List<Integer> tempList, int k, 
 public class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer> temp = new ArrayList<>();
+        List<Integer> curr = new ArrayList<>();
         Arrays.sort(candidates);
-        backtrack(candidates, res, temp, 0, target);
+        helper(candidates, target, 0, res, curr);
         return res;
     }
     
-    void backtrack(int[] candidates, List<List<Integer>> res, List<Integer> temp, int start, int remain){
-        if (remain < 0) return; //no solution
-        else if (remain == 0)   res.add(new ArrayList<>(temp));
-        else{
-            for (int i = start; i < candidates.length; i++){
-                if (i > start && candidates[i] == candidates[i-1])   continue;
-                temp.add(candidates[i]);
-                backtrack(candidates, res, temp, i+1, remain-candidates[i]);
-                temp.remove(temp.size()-1);
+    private void helper(int[] cand, int target, int start, List<List<Integer>> res, List<Integer> curr){
+        if (target > 0){
+            for (int i = start; i < cand.length; i++){
+                if (i > start && cand[i] == cand[i-1]){
+                    continue;
+                }
+                curr.add(cand[i]);
+                helper(cand, target - cand[i], i + 1, res, curr);
+                curr.remove(curr.size()-1);
             }
+        }
+        else if (target == 0){
+            res.add(new ArrayList<Integer>(curr));
         }
     }
 }
