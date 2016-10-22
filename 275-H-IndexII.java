@@ -19,18 +19,20 @@ O(logn) runtime; O(1) space
 
 public class Solution {
     public int hIndex(int[] citations) {
-        if (citations.length == 0 || citations == null) return 0;
-        int n = citations.length;
-        int left = 0, right = n;
-        while (left < right){
-            int mid = left + (right - left) / 2;
-            if (citations[mid] == n - mid)
-                return n - mid;
-            else if (citations[mid] < n - mid)
-                left = mid + 1;
-            else
-                right = mid;
+        if (citations == null || citations.length == 0){
+            return 0;
         }
-        return n-left;
+        int left = 0, right = citations.length - 1, len = citations.length;
+        while (left <= right){
+            int mid = left + (right - left) / 2;
+            if (citations[mid] == len - mid){
+                return len - mid;
+            }else if (citations[mid] < len - mid){
+                left = mid + 1;
+            }else{
+                right = mid - 1;
+            }
+        }
+        return len - left;
     }
 }
