@@ -2,6 +2,9 @@ public class Solution {
     public List<List<String>> partition(String s) {
         List<List<String>> res = new ArrayList<>();
         List<String> tmp = new ArrayList<>();
+        if (s.length() == 0){
+            return res;
+        }
         trackback(s, 0, tmp, res);
         return res;
     }
