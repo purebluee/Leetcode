@@ -5,28 +5,37 @@ public class Codec {
 
     // Encodes a list of strings to a single string.
     public String encode(List<String> strs) {
-        if (strs == null)
+        if (strs == null){
             return null;
-        if (strs.size() == 0)
-            return "";
+        }
+        if (strs.size() == 0){
+            return new String();
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < strs.size(); i++){
-            sb.append(strs.get(i).length()).append("#").append(strs.get(i));
+            int len = strs.get(i).length();
+            sb.append(len + "#" + strs.get(i));
         }
         return sb.toString();
     }
 
     // Decodes a single string to a list of strings.
     public List<String> decode(String s) {
-        if (s == null)
-            return null;
         List<String> res = new ArrayList<>();
-        int i = 0;
-        while (i < s.length()){
-            int seperatorIndex = s.indexOf("#", i);
-            int num = Integer.parseInt(s.substring(i, seperatorIndex));
-            res.add(s.substring(seperatorIndex + 1, seperatorIndex + num + 1));
-            i = seperatorIndex + num + 1;
+        if (s == null){
+            return null;
+        }
+        if (s.length() == 0){
+            return res;
+        }
+        int curr = 0;
+        while (curr < s.length()){
+            int separatorIndex = s.indexOf("#", curr);
+            int len = Integer.parseInt(s.substring(curr, separatorIndex));
+            curr = separatorIndex + 1;
+            String currStr = s.substring(curr, curr + len);
+            res.add(currStr);
+            curr += len;
         }
         return res;
     }
