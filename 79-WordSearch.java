@@ -1,11 +1,15 @@
 public class Solution {
-    //static boolean[][] visited;
     public boolean exist(char[][] board, String word) {
-        boolean[][] visited = new boolean[board.length][board[0].length];
-        
-        for (int i = 0; i < board.length; i++){
-            for (int j = 0; j < board[i].length; j++){
-                if (word.charAt(0) == board[i][j] && checkExist(board, word, i, j, 0, visited)){
+        if (board == null || board.length == 0 || board[0].length == 0 || 
+        word == null || word.length() == 0){
+            return false;
+        }
+        int m = board.length;
+        int n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0; i < m; i++){
+            for (int j = 0; j < n; j++){
+                if (search(board, word, i, j, 0, visited)){
                     return true;
                 }
             }
@@ -13,21 +17,22 @@ public class Solution {
         return false;
     }
     
-    private boolean checkExist(char[][] board, String word, int i, int j, int start, boolean[][] visited){
-        if (start == word.length())
+    private boolean search(char[][] board, String word, int x, int y, int start, boolean[][] visited){
+        if (start == word.length()){
             return true;
-        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length)
-            return false;
-            
-        if (!visited[i][j] && word.charAt(start) == board[i][j]){
-            visited[i][j] = true;
-            boolean res = checkExist(board, word, i+1, j, start+1, visited) || 
-                checkExist(board, word, i, j+1, start+1, visited) ||
-                checkExist(board, word, i-1, j, start+1, visited) ||
-                checkExist(board, word, i, j-1, start+1, visited);
-            visited[i][j] = false;
-            return res;
         }
-        return false;
+        if (x >= board.length || x < 0 || y >= board[0].length || y < 0){
+            return false;
+        }
+        if (visited[x][y] || board[x][y] != word.charAt(start)){
+            return false;
+        }
+        visited[x][y] = true;
+        boolean res = search(board, word, x + 1, y, start + 1, visited) ||
+        search(board, word, x, y + 1, start + 1, visited) ||
+        search(board, word, x - 1, y, start + 1, visited) ||
+        search(board, word, x, y - 1, start + 1, visited);
+        visited[x][y] = false;
+        return res;
     }
 }
