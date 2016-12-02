@@ -1,14 +1,16 @@
 public class Solution {
     public int singleNumber(int[] nums) {
-        HashSet<Integer> hs = new HashSet<>();
-        int res = 0;
+        if (nums == null || nums.length == 0){
+            return 0;
+        }
+        Set<Integer> set = new HashSet<>();
         for (int i = 0; i < nums.length; i++){
-            if (!hs.add(nums[i]))    
-                hs.remove(nums[i]);
-            else {
-                res = nums[i];
+            if (set.contains(nums[i])){
+                set.remove(nums[i]);
+            }else{
+                set.add(nums[i]);
             }
         }
-        return hs.iterator().next();
+        return set.iterator().next();
     }
 }
