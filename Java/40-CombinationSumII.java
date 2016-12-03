@@ -1,6 +1,4 @@
 /*
-
-
 Combination Sum I
 
 public class Solution {

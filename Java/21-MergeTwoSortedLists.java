@@ -18,29 +18,24 @@ public class Solution {
         if (l2 == null){
             return l1;
         }
-        ListNode dummy = new ListNode(0);
-        dummy.next = l1.val < l2.val ? l1 : l2;
-        ListNode curr = dummy;
-        ListNode p1 = l1;
-        ListNode p2 = l2;
-        while (p1 != null || p2 != null){
-            if (p1 == null){
-                curr.next = p2;
-                break;
-            }
-            if (p2 == null){
-                curr.next = p1;
-                break;
-            }
-            if (p1.val < p2.val){
-                curr.next = p1;
-                curr = curr.next;
-                p1 = p1.next;
+        
+        ListNode curr = new ListNode(0);
+        ListNode dummy = curr; 
+        while (l1 != null && l2 != null){
+            if (l1.val <= l2.val){
+                curr.next = l1;
+                l1 = l1.next;
             }else{
-                curr.next = p2;
-                curr = curr.next;
-                p2 = p2.next;
+                curr.next = l2;
+                l2 = l2.next;
             }
+            curr = curr.next;
+        }
+        if (l1 != null){
+            curr.next = l1;
+        }
+        if (l2 != null){
+            curr.next = l2;
         }
         return dummy.next;
     }
