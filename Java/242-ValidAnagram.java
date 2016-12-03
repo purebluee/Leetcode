@@ -1,3 +1,4 @@
+//O(nlogn)
 public class Solution {
     public boolean isAnagram(String s, String t) {
         if (s == null || t == null || s.length() != t.length()){
@@ -11,12 +12,14 @@ public class Solution {
         t = new String(chart);
         return s.equals(t);
     }
-
+}
+//O(n)
+public class Solution {
     public boolean isAnagramSol2(String s, String t) {
         if (s.length() != t.length()){
             return false;
         }
-        int[] count = new int['z' - 'a' + 1];
+        int[] count = new int[26];
         for (char c : s.toCharArray()){
             count[c - 'a']++;
         }

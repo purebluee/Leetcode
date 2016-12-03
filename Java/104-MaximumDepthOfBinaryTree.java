@@ -43,23 +43,25 @@ public int maxDepth(TreeNode root) {
     return count;
 }
 //DFS:
-public int maxDepth(TreeNode root) {
-    Stack<TreeNode> nodes = new Stack<TreeNode>();
-    Stack<Integer> depths= new Stack<Integer>();
-    nodes.push(root);
-    depths.push(1);
-    int max = 0;
-    
-    while(!nodes.isEmpty()) {
-        TreeNode node = nodes.pop();
-        int depth = depths.pop();
-        if (node == null) continue;
-        if (depth > max) max = depth;
-        nodes.push(node.left);
-        depths.push(depth+1);
-        nodes.push(node.right);
-        depths.push(depth+1);
+public class Solution {
+    public int maxDepth(TreeNode root) {
+        Stack<TreeNode> nodes = new Stack<TreeNode>();
+        Stack<Integer> depths= new Stack<Integer>();
+        nodes.push(root);
+        depths.push(1);
+        int max = 0;
+        
+        while(!nodes.isEmpty()) {
+            TreeNode curr = nodes.pop();
+            int depth = depths.pop();
+            if (curr == null) 
+                continue;
+            max = Math.max(max, depth);
+            nodes.push(curr.left);
+            depths.push(depth + 1);
+            nodes.push(curr.right);
+            depths.push(depth + 1);
+        }
+        return max;
     }
-    
-    return max;
 }
