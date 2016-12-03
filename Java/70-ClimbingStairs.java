@@ -7,9 +7,6 @@ public class Solution {
         if (n == 1){
             return 1;
         }
-        if (n == 2){
-            return 2;
-        }
         int[] ways = new int[n];
         ways[0] = 1;
         ways[1] = 2;
