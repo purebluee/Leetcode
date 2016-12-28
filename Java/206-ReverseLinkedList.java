@@ -20,7 +20,7 @@ public class Solution {
             curr = next;
         }
         head = prev;
-        return prev;
+        return head;
     }
 
 
