@@ -4,7 +4,7 @@ public class Solution {
         if (needle == null || needle.length() == 0 || haystack.equals(needle)){
             return 0;
         }
-        if (haystack == null || haystack.length() == 0 || haystack.length < needle.length){
+        if (haystack == null || haystack.length() == 0 || haystack.length() < needle.length()){
             return -1;
         }
         Set<String> set = new HashSet<>();
@@ -26,7 +26,7 @@ public class Solution {
         if (needle == null || needle.length() == 0 || haystack.equals(needle)){
             return 0;
         }
-        if (haystack == null || haystack.length() == 0 || haystack.length < needle.length){
+        if (haystack == null || haystack.length() == 0 || haystack.length() < needle.length()){
             return -1;
         }
         int m = haystack.length(), n = needle.length();
