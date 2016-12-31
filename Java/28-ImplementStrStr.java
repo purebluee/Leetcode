@@ -4,12 +4,12 @@ public class Solution {
         if (needle == null || needle.length() == 0 || haystack.equals(needle)){
             return 0;
         }
-        if (haystack == null || haystack.length() == 0){
+        if (haystack == null || haystack.length() == 0 || haystack.length < needle.length){
             return -1;
         }
         Set<String> set = new HashSet<>();
         int m = haystack.length(), n = needle.length();
-        
+
         set.add(needle);
         for (int i = 0; i <= m - n; i++){
             if (set.contains(haystack.substring(i, i + n))){
@@ -26,7 +26,7 @@ public class Solution {
         if (needle == null || needle.length() == 0 || haystack.equals(needle)){
             return 0;
         }
-        if (haystack == null || haystack.length() == 0){
+        if (haystack == null || haystack.length() == 0 || haystack.length < needle.length){
             return -1;
         }
         int m = haystack.length(), n = needle.length();
