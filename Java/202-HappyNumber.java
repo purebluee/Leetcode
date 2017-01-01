@@ -8,7 +8,7 @@ public class Solution {
                 return true;
             }
         }
-        return n == 1 ? true : false;
+        return n == 1;
     }
     
     private int squareSum(int n){
