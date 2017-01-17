@@ -7,6 +7,8 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+
 public class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
@@ -28,6 +30,7 @@ public class Solution {
                     queue.offer(head.right);
                 }
             }
+            //or insert to the head of the list: res.add(0,level);
             res.add(level);
         }
         Collections.reverse(res);

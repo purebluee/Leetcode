@@ -31,20 +31,21 @@ public class Solution {
 
     //Iterative
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> l = new ArrayList<>();
-        if (root == null)   return l;
-        Stack<TreeNode> s = new Stack<>();
-        while (root != null || !s.isEmpty()){
+        List<Integer> res = new ArrayList<>();
+        if (root == null)   
+            return res;
+        Stack<TreeNode> stack = new Stack<>();
+        while (root != null || !stack.isEmpty()){
             if (root != null){
-                l.add(root.val);
-                s.push(root);
+                res.add(root.val);
+                stack.push(root);
                 root = root.left;
             }else{
-                root = s.pop();
+                root = stack.pop();
                 root = root.right;
             }
         }
-        return l;
+        return res;
     }
 
 }

@@ -6,7 +6,7 @@ public class Solution {
         notPrime[0] = true;
         notPrime[1] = true;
         
-        for (int i = 2; i < Math.sqrt(n); i++){
+        for (int i = 2; i * i < n; i++){
             if (!notPrime[i]){
                 for (int j = 2; i * j < n; j++){
                     notPrime[i*j] = true;//Attention!!! [i*j]

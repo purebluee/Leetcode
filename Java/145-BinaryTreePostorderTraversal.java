@@ -19,6 +19,7 @@ public List<Integer> preorderTraversal(TreeNode root) {
     }
     return result;
 }
+
 IN ORDER TRAVERSE
 
 public List<Integer> inorderTraversal(TreeNode root) {
@@ -73,5 +74,24 @@ public class Solution {
             dfs(root.right, res);
             res.add(root.val);
         }
+    }
+}
+
+//another recursion
+public class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        helper(root, res);
+        return res;
+    }
+    
+    private List<Integer> helper(TreeNode root, List<Integer> res){
+        if (root == null){
+            return res;
+        }
+        helper(root.left, res);
+        helper(root.right, res);
+        res.add(root.val);
+        return res;
     }
 }
