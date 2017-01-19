@@ -1,3 +1,18 @@
+//recursion
+
+public class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null){
+            return false;
+        }
+        if (root.left == null && root.right == null && root.val == sum){
+            return true;
+        }
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
+}
+
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -7,6 +22,8 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+//iterative
 public class Solution {
     public boolean hasPathSum(TreeNode root, int sum) {
         Stack<TreeNode> stack = new Stack<>();
