@@ -24,6 +24,4 @@ public:
         int right = height(root->right);
         return isBalanced(root->left) && isBalanced(root->right) && abs(left - right) <= 1;
     }
-
-
 };

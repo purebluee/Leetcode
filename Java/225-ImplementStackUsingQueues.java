@@ -27,11 +27,11 @@ class MyStack {
     private Queue<Integer> q1 = new LinkedList<>();
     private Queue<Integer> q2 = new LinkedList<>();
 
-    public Integer peek() {
+    public int peek() {
        return q1.isEmpty() ? q2.peek() : q1.peek();
     }
 
-    public Integer pop() {
+    public int pop() {
        if (!q1.isEmpty()){
            q1.poll();
        }else{
@@ -39,7 +39,7 @@ class MyStack {
        }
     }
 
-    public void push(Integer item) {
+    public void push(int item) {
        if (q1.isEmpty()){
            q1.add(item);
            for (int i = 0; i < q2.size(); i++){
