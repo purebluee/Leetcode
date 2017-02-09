@@ -54,8 +54,8 @@ public class Solution {
     
     private int countPerimeter(int x, int y, int[][] grid, boolean[][] visited) {
         visited[x][y] = true;
-        int dx[] = {-1, 1, 0, 0};
-        int dy[] = {0, 0, 1, -1};
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, 1, -1};
         int perimeter = 0;
         for (int i=0; i<dx.length; i++) {
             int nx = x + dx[i];
