@@ -6,6 +6,8 @@
  *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
  * };
  */
+
+ //perfect binary tree
 class Solution {
 public:
     void connect(TreeLinkNode *root) {

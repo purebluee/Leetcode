@@ -40,20 +40,20 @@ public class Solution {
     public int islandPerimeter(int[][] grid) {
         int n = grid.length;
         int m = grid[0].length;
-        boolean used[][] = new boolean[n][m];
+        boolean[][] visited = new boolean[n][m];
         
         for (int i=0; i<n; i++) {
             for (int j=0; j<m; j++) {
                 if (grid[i][j]==1) {
-                    return countPerimeter(i,j,grid, used);
+                    return countPerimeter(i,j,grid, visited);
                 }
             }
         }
         return 0;
     }
     
-    private int countPerimeter(int x, int y, int [][] grid, boolean used[][]) {
-        used[x][y] = true;
+    private int countPerimeter(int x, int y, int[][] grid, boolean[][] visited) {
+        visited[x][y] = true;
         int dx[] = {-1, 1, 0, 0};
         int dy[] = {0, 0, 1, -1};
         int perimeter = 0;
@@ -61,8 +61,8 @@ public class Solution {
             int nx = x + dx[i];
             int ny = y + dy[i];
             if (inBound(nx, ny, grid)) {
-                if (!used[nx][ny]) {
-                    perimeter += countPerimeter(nx, ny, grid, used);
+                if (!visited[nx][ny]) {
+                    perimeter += countPerimeter(nx, ny, grid, visited);
                 }
             } else {
                 perimeter++;
@@ -71,7 +71,7 @@ public class Solution {
         return perimeter;
     }
     
-    private boolean inBound(int x, int y, int [][] grid) {
+    private boolean inBound(int x, int y, int[][] grid) {
         return (x>=0 && x<grid.length && y>=0 && y<grid[0].length && grid[x][y]==1);
     }
 }
