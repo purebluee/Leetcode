@@ -35,6 +35,8 @@ public class Solution {
 /*
 Used depth first search to traverse through all islands. Inside recursion for each island calculated its perimeter.
 */
+
+
 public class Solution {
     
     public int islandPerimeter(int[][] grid) {
@@ -52,17 +54,28 @@ public class Solution {
         return 0;
     }
     
+/*
+[[0,1,0,0],
+ [1,1,1,0],
+ [0,1,0,0],
+ [1,1,0,0]]
+*/    
     private int countPerimeter(int x, int y, int[][] grid, boolean[][] visited) {
         visited[x][y] = true;
-        int[] dx = {-1, 1, 0, 0};
-        int[] dy = {0, 0, 1, -1};
+        int dx[] = {-1, 1, 0, 0};
+        int dy[] = {0, 0, 1, -1};
         int perimeter = 0;
+        //x = 3, y = 3  grid[3][3]
+        //i = 0: grid[2][3]
+        //i = 1: grid[4][3]
+        //i = 2: grid[3][4]
+        //i = 3: grid[3][2]
         for (int i=0; i<dx.length; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            if (inBound(nx, ny, grid)) {
-                if (!visited[nx][ny]) {
-                    perimeter += countPerimeter(nx, ny, grid, visited);
+            int movex = x + dx[i];
+            int movey = y + dy[i];
+            if (inBound(movex, movey, grid)) {
+                if (!visited[movex][movey]) {
+                    perimeter += countPerimeter(movex, movey, grid, visited);
                 }
             } else {
                 perimeter++;
@@ -72,6 +85,6 @@ public class Solution {
     }
     
     private boolean inBound(int x, int y, int[][] grid) {
-        return (x>=0 && x<grid.length && y>=0 && y<grid[0].length && grid[x][y]==1);
+        return (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == 1);
     }
 }
