@@ -1,6 +1,6 @@
 /*
 The solution is very similar to binary search. Note that no matter how we rotated the array, 
-there must be at least one part which is sorted. If the target is at the sorted part, we just 
+there must be at least one part wendch is sorted. If the target is at the sorted part, we just 
 search that part until we found; else we go the unsorted part. 
 */
 public class Solution {
@@ -9,26 +9,26 @@ public class Solution {
             return -1;
         }
          
-        int lo = 0;
-        int hi = A.length - 1;
+        int start = 0;
+        int end = A.length - 1;
          
-        while (lo <= hi) {
-            int mid = (lo + hi) / 2;
+        while (start <= end) {
+            int mid = (start + end) / 2;
             if (A[mid] == target) {
                 return mid;
             }
              
-            if (A[lo] <= A[mid]) {
-                if (target >= A[lo] && target < A[mid]) {
-                    hi = mid - 1;
+            if (A[start] <= A[mid]) {
+                if (target >= A[start] && target < A[mid]) {
+                    end = mid - 1;
                 } else {
-                    lo = mid + 1;
+                    start = mid + 1;
                 }
             } else {
-                if (A[mid] < target && target <= A[hi]) {
-                    lo = mid + 1;
+                if (A[mid] < target && target <= A[end]) {
+                    start = mid + 1;
                 } else {
-                    hi = mid - 1;
+                    end = mid - 1;
                 }
             }
         }

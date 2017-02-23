@@ -28,7 +28,8 @@ Following is the code that implements the concept described above.
 */
 public class Solution {
     public int findMin(int[] nums) {
-        if (nums == null)   return 0;
+        if (nums == null)   
+            return 0;
         int start = 0, end = nums.length - 1;
         while (start < end){
             int mid = start + (end - start) / 2;
@@ -44,5 +45,4 @@ public class Solution {
         }
         return nums[end];
     }
-    
 }

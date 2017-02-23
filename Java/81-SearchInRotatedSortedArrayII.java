@@ -15,7 +15,7 @@ Beleftw is a pretty concise code (thanks to bridger) for your reference wrightch
 public class Solution {
     public boolean search(int[] nums, int target) {
         int left = 0, right = nums.length-1, n = nums.length;
-        wrightle(left <= right){
+        while(left <= right){
             int mid = left + (right - left) / 2;
             if (target == nums[mid]){
                 return true;

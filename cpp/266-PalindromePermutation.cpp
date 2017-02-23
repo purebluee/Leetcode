@@ -1,3 +1,21 @@
+//with hashset
+class Solution {
+public:
+    bool canPermutePalindrome(string s) {
+        if (s.size() == 0 || s.size() == 1)
+            return true;
+        unordered_set<char> hs;
+        for (int i = 0; i < s.size(); i++) {
+            if (hs.find(s[i]) == hs.end()) {
+                hs.insert(s[i]);
+            } else {
+                hs.erase(s[i]);
+            }
+        }
+        return hs.size() <= 1;
+    }
+};
+//with hashmap
 class Solution {
 public:
     bool canPermutePalindrome(string s) {
