@@ -10,6 +10,6 @@ public class Solution {
             else if (nums[mid2] < nums[mid1])
                 end = mid1;
         }
-        return nums[left] > nums[right] ? left : right;
+        return nums[start] > nums[end] ? start : end;
     }
 }
