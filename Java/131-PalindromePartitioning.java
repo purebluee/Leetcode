@@ -10,7 +10,8 @@ public class Solution {
     }
     
     private void trackback(String s, int pos, List<String> tmp, List<List<String>> res){
-        if (pos == s.length())  res.add(new ArrayList<String>(tmp));
+        if (pos == s.length())  
+            res.add(new ArrayList<String>(tmp));
         else{
             for (int i = pos; i < s.length(); i++){
                 if (isPal(s, pos, i)){

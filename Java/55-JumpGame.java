@@ -10,11 +10,10 @@ public class Solution {
         for (int i = 0; i < nums.length; i++){
             if (maxStep < i){
                 return false;
-            }
-            if (maxStep >= i){
-                maxStep = Math.max(i + nums[i], maxStep);
             }else if (maxStep >= nums.length - 1){
                 return true;
+            }else{
+                maxStep = Math.max(i + nums[i], maxStep);
             }
         }
         return maxStep >= nums.length - 1;
