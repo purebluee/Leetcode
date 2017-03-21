@@ -1,7 +1,7 @@
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         if (numCourses == 0 || prerequisites == null || prerequisites.length == 0){
-            return true; //??
+            return true; 
         }
         
         // create a list to represent the courses
@@ -42,6 +42,48 @@ public class Solution {
         }
         
         visited[course] = 2;// mark it done visiting
+        return true;
+    }
+}
+
+//more generalized solution (TLE)
+//2, [[1,0],[0,1]]
+public class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if (numCourses == 0 || prerequisites == null || prerequisites.length == 0){
+            return true; 
+        }
+        Map<Integer, List<Integer>> edgeList = new HashMap<>();
+        Set<Integer> visited = new HashSet<>();
+        for (int i = 0; i < prerequisites.length; i++) {
+            if (!edgeList.containsKey(prerequisites[i][1])) {
+                edgeList.put(prerequisites[i][1], new ArrayList<Integer>());
+            } 
+            edgeList.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }
+        
+        for (int i = 0; i < numCourses; i++) {
+            if (!dfs(edgeList, visited, i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean dfs(Map<Integer, List<Integer>> edgeList, Set<Integer> visited, int n) {
+        if (visited.contains(n)) {
+            return false;
+        } else {
+            visited.add(n);
+        }
+        if (edgeList.get(n) != null) {
+            for (int i : edgeList.get(n)) {
+                if (!dfs(edgeList, visited, i)) {
+                    return false;
+                }
+            }
+        }
+        visited.remove(n);
         return true;
     }
 }
